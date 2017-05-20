@@ -20,7 +20,7 @@ export class MessageService{
       ? '?token=' + localStorage.getItem('token')
       : '';
     //sets up an observable <= DOES NOT SEND REQUEST( line below)
-    return this.http.post('http://localhost:3000/message' + token, body, {headers: headers})
+    return this.http.post('https://angular2-deployment-rf.herokuapp.com/message' + token, body, {headers: headers})
       .map((response: Response) => {
         const result = response.json();
         const message = new  Message(
@@ -45,7 +45,7 @@ export class MessageService{
   }
 
   getMessages(){
-    return this.http.get('http://localhost:3000/message')
+    return this.http.get('https://angular2-deployment-rf.herokuapp.com/message')
       .map((response: Response) => {
         const messages = response.json().obj;
         let transformedMessages: Message[]=[];
@@ -75,7 +75,7 @@ export class MessageService{
       ? '?token=' + localStorage.getItem('token')
       : '';
     //sets up an observable <= DOES NOT SEND REQUEST( line below)
-    return this.http.patch('http://localhost:3000/message/' + message.messageId + token, body, {headers: headers})
+    return this.http.patch('https://angular2-deployment-rf.herokuapp.com/' + message.messageId + token, body, {headers: headers})
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
@@ -88,7 +88,7 @@ export class MessageService{
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.delete('http://localhost:3000/message/' + message.messageId + token)
+    return this.http.delete('https://angular2-deployment-rf.herokuapp.com/message/' + message.messageId + token)
       .map((response: Response) => response.json())
       .catch((error: Response) => {
         this.errorService.handleError(error.json());
